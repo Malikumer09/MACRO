@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Macro Intelligence</title>
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; background: #0b0f14; color: #e6edf3;
+       font-family: Segoe UI, Arial, sans-serif; }
+.wrap { max-width: 1100px; margin: 0 auto; padding: 28px 16px 60px; }
+h1 { margin: 0; font-size: 26px; letter-spacing: 0.5px; }
+.sub { color: #8b98a5; margin-top: 6px; font-size: 14px; }
+.warn { margin: 20px 0; padding: 12px 14px; border: 1px solid #6b5a1e;
+        background: #1f1a0a; color: #e8c766; border-radius: 8px; font-size: 14px; }
+.grid { display: grid; gap: 14px;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+.card { background: #121821; border: 1px solid #1f2935; border-radius: 10px;
+        padding: 16px; border-left-width: 5px; }
+.card.up { border-left-color: #2fbf71; }
+.card.down { border-left-color: #e5534b; }
+.card.flat { border-left-color: #6e7b8a; }
+.top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.sym { font-size: 20px; font-weight: 700; }
+.bias { font-weight: 700; font-size: 13px; padding: 4px 10px; border-radius: 999px;
+        white-space: nowrap; }
+.up .bias { background: #12351f; color: #5fe39a; }
+.down .bias { background: #3a1513; color: #ff8a82; }
+.flat .bias { background: #1c2430; color: #aab6c3; }
+.soft .bias { background: transparent; border: 1px solid currentColor; }
+.conf { color: #8b98a5; font-size: 13px; margin-top: 6px; }
+.scorerow { display: flex; justify-content: space-between; align-items: baseline;
+            margin-top: 14px; }
+.score { font-size: 22px; font-weight: 700; }
+.up .score { color: #5fe39a; }
+.down .score { color: #ff8a82; }
+.flat .score { color: #aab6c3; }
+.range { color: #5c6875; font-size: 11px; }
+.bar { position: relative; height: 8px; background: #1c2430; border-radius: 4px;
+       margin-top: 6px; }
+.bar .mid { position: absolute; left: 50%; top: -3px; width: 1px; height: 14px;
+            background: #5c6875; }
+.bar .fill { position: absolute; top: 0; height: 8px; border-radius: 4px; }
+.up .fill { background: #2fbf71; }
+.down .fill { background: #e5534b; }
+.flat .fill { background: #6e7b8a; }
+.parts { display: flex; gap: 18px; margin-top: 10px; font-size: 13px; color: #8b98a5; }
+.parts b { color: #e6edf3; font-weight: 600; }
+.label { color: #8b98a5; font-size: 11px; text-transform: uppercase;
+         letter-spacing: 1px; margin-top: 14px; }
+.text { font-size: 14px; line-height: 1.45; margin-top: 4px; }
+.note { font-size: 13px; color: #e8c766; margin-top: 8px; }
+.foot { color: #5c6875; font-size: 12px; margin-top: 30px; line-height: 1.6; }
+.nav { display: flex; gap: 8px; margin-top: 18px; }
+.nav a { color: #aab6c3; text-decoration: none; font-size: 14px; padding: 6px 14px;
+         border: 1px solid #1f2935; border-radius: 999px; }
+.nav a.on { color: #0b0f14; background: #e6edf3; border-color: #e6edf3; font-weight: 600; }
+h2 { font-size: 16px; margin: 28px 0 10px; }
+.tablebox { overflow-x: auto; background: #121821; border: 1px solid #1f2935;
+            border-radius: 10px; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th, td { padding: 9px 12px; text-align: right; white-space: nowrap;
+         border-bottom: 1px solid #1f2935; }
+th { color: #8b98a5; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;
+     font-weight: 600; }
+th:first-child, td:first-child, td.l, th.l { text-align: left; }
+tr:last-child td { border-bottom: none; }
+td.good { color: #5fe39a; font-weight: 600; }
+td.bad { color: #ff8a82; font-weight: 600; }
+td.dim { color: #5c6875; }
+.empty { padding: 18px; color: #8b98a5; font-size: 14px; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Macro Intelligence</h1>
+    <div class="sub">Live track record &middot; every call checked against 9:30 to 11:00 New York time</div>
+    <div class="nav">
+      <a href="index.html">Today</a>
+      <a href="track.html" class="on">Track record</a>
+      <a href="history.html">History</a>
+    </div>
+    <div class="warn">Prototype. This bias is not validated and is not trading advice.</div>
+    
+    <h2>By instrument</h2>
+    <div class="tablebox"><table>
+      <tr><th>Asset</th><th>Days scored</th><th>Calls right</th>
+          <th>Leans right</th><th>Up side won (baseline)</th></tr>
+      <tr><td>XAUUSD</td><td>2</td><td>none yet</td><td>none yet</td><td>0 of 2 (0%)</td></tr><tr><td>EURUSD</td><td>2</td><td>1 of 1 (100%)</td><td>0 of 1 (0%)</td><td>1 of 2 (50%)</td></tr><tr><td>GBPUSD</td><td>2</td><td>0 of 1 (0%)</td><td>0 of 1 (0%)</td><td>2 of 2 (100%)</td></tr><tr><td>USDJPY</td><td>2</td><td>none yet</td><td>none yet</td><td>1 of 2 (50%)</td></tr><tr><td>USDCAD</td><td>2</td><td>0 of 1 (0%)</td><td>1 of 1 (100%)</td><td>1 of 2 (50%)</td></tr><tr><td>USDCHF</td><td>2</td><td>none yet</td><td>none yet</td><td>0 of 2 (0%)</td></tr><tr><td>ES</td><td>2</td><td>none yet</td><td>0 of 1 (0%)</td><td>1 of 2 (50%)</td></tr><tr><td>NQ</td><td>2</td><td>none yet</td><td>0 of 1 (0%)</td><td>1 of 2 (50%)</td></tr><tr><td>WTI</td><td>2</td><td>none yet</td><td>none yet</td><td>2 of 2 (100%)</td></tr>
+    </table></div>
+    <h2>Every scored session (newest first)</h2>
+    <div class="tablebox"><table>
+      <tr><th>Date</th><th class="l">Asset</th><th class="l">Call</th><th>Score</th>
+          <th>Room up</th><th>Room down</th><th>Move</th><th>Result</th></tr>
+      <tr><td>2026-10-02</td><td class='l'>XAUUSD</td><td class='l'>Neutral</td><td>-12</td><td>0.20%</td><td>0.91%</td><td>-0.82%</td><td class="dim">no call</td></tr><tr><td>2026-10-02</td><td class='l'>EURUSD</td><td class='l'>Leaning bearish</td><td>-32</td><td>0.29%</td><td>0.05%</td><td>+0.25%</td><td class="bad">&#10007; Wrong</td></tr><tr><td>2026-10-02</td><td class='l'>GBPUSD</td><td class='l'>Leaning bearish</td><td>-37</td><td>0.21%</td><td>0.05%</td><td>+0.16%</td><td class="bad">&#10007; Wrong</td></tr><tr><td>2026-10-02</td><td class='l'>USDJPY</td><td class='l'>Neutral</td><td>+2</td><td>0.22%</td><td>0.01%</td><td>+0.15%</td><td class="dim">no call</td></tr><tr><td>2026-10-02</td><td class='l'>USDCAD</td><td class='l'>Leaning bullish</td><td>+32</td><td>0.07%</td><td>0.06%</td><td>+0.04%</td><td class="good">&#10003; Right</td></tr><tr><td>2026-10-02</td><td class='l'>USDCHF</td><td class='l'>Neutral</td><td>+18</td><td>0.13%</td><td>0.16%</td><td>+0.05%</td><td class="dim">no call</td></tr><tr><td>2026-10-02</td><td class='l'>ES</td><td class='l'>Leaning bearish</td><td>-26</td><td>0.27%</td><td>0.21%</td><td>+0.04%</td><td class="bad">&#10007; Wrong</td></tr><tr><td>2026-10-02</td><td class='l'>NQ</td><td class='l'>Leaning bearish</td><td>-32</td><td>0.43%</td><td>0.29%</td><td>+0.06%</td><td class="bad">&#10007; Wrong</td></tr><tr><td>2026-10-02</td><td class='l'>WTI</td><td class='l'>Neutral</td><td>+5</td><td>1.36%</td><td>1.08%</td><td>+0.46%</td><td class="dim">no call</td></tr><tr><td>2026-10-01</td><td class='l'>XAUUSD</td><td class='l'>Neutral</td><td>n/a</td><td>0.18%</td><td>0.39%</td><td>-0.11%</td><td class="dim">no call</td></tr><tr><td>2026-10-01</td><td class='l'>EURUSD</td><td class='l'>BEARISH</td><td>n/a</td><td>0.09%</td><td>0.21%</td><td>-0.18%</td><td class="good">&#10003; Right</td></tr><tr><td>2026-10-01</td><td class='l'>GBPUSD</td><td class='l'>BEARISH</td><td>n/a</td><td>0.10%</td><td>0.08%</td><td>-0.08%</td><td class="bad">&#10007; Wrong</td></tr><tr><td>2026-10-01</td><td class='l'>USDJPY</td><td class='l'>Neutral</td><td>n/a</td><td>0.09%</td><td>0.49%</td><td>-0.16%</td><td class="dim">no call</td></tr><tr><td>2026-10-01</td><td class='l'>USDCAD</td><td class='l'>BULLISH</td><td>n/a</td><td>0.05%</td><td>0.09%</td><td>+0.03%</td><td class="bad">&#10007; Wrong</td></tr><tr><td>2026-10-01</td><td class='l'>USDCHF</td><td class='l'>Neutral</td><td>n/a</td><td>0.05%</td><td>0.76%</td><td>-0.56%</td><td class="dim">no call</td></tr><tr><td>2026-10-01</td><td class='l'>ES</td><td class='l'>Neutral</td><td>n/a</td><td>0.13%</td><td>0.62%</td><td>-0.53%</td><td class="dim">no call</td></tr><tr><td>2026-10-01</td><td class='l'>NQ</td><td class='l'>Neutral</td><td>n/a</td><td>0.19%</td><td>0.77%</td><td>-0.52%</td><td class="dim">no call</td></tr><tr><td>2026-10-01</td><td class='l'>WTI</td><td class='l'>Neutral</td><td>n/a</td><td>1.79%</td><td>0.18%</td><td>+1.43%</td><td class="dim">no call</td></tr>
+    </table></div>
+    <div class="foot">Right = the side the bias pointed to had more room than the other side.<br>Room up / down = how far price went above / below the 9:30 open, as % of price.<br>Up side won = how often the up side had more room on ALL scored days. This is the baseline with no engine.<br>Only reports saved before 9:30 New York time are counted. Results are never changed after scoring.</div>
+  </div>
+</body>
+</html>

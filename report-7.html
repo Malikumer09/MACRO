@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Macro Intelligence</title>
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; background: #0b0f14; color: #e6edf3;
+       font-family: Segoe UI, Arial, sans-serif; }
+.wrap { max-width: 1100px; margin: 0 auto; padding: 28px 16px 60px; }
+h1 { margin: 0; font-size: 26px; letter-spacing: 0.5px; }
+.sub { color: #8b98a5; margin-top: 6px; font-size: 14px; }
+.warn { margin: 20px 0; padding: 12px 14px; border: 1px solid #6b5a1e;
+        background: #1f1a0a; color: #e8c766; border-radius: 8px; font-size: 14px; }
+.grid { display: grid; gap: 14px;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+.card { background: #121821; border: 1px solid #1f2935; border-radius: 10px;
+        padding: 16px; border-left-width: 5px; }
+.card.up { border-left-color: #2fbf71; }
+.card.down { border-left-color: #e5534b; }
+.card.flat { border-left-color: #6e7b8a; }
+.top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.sym { font-size: 20px; font-weight: 700; }
+.bias { font-weight: 700; font-size: 13px; padding: 4px 10px; border-radius: 999px;
+        white-space: nowrap; }
+.up .bias { background: #12351f; color: #5fe39a; }
+.down .bias { background: #3a1513; color: #ff8a82; }
+.flat .bias { background: #1c2430; color: #aab6c3; }
+.soft .bias { background: transparent; border: 1px solid currentColor; }
+.conf { color: #8b98a5; font-size: 13px; margin-top: 6px; }
+.scorerow { display: flex; justify-content: space-between; align-items: baseline;
+            margin-top: 14px; }
+.score { font-size: 22px; font-weight: 700; }
+.up .score { color: #5fe39a; }
+.down .score { color: #ff8a82; }
+.flat .score { color: #aab6c3; }
+.range { color: #5c6875; font-size: 11px; }
+.bar { position: relative; height: 8px; background: #1c2430; border-radius: 4px;
+       margin-top: 6px; }
+.bar .mid { position: absolute; left: 50%; top: -3px; width: 1px; height: 14px;
+            background: #5c6875; }
+.bar .fill { position: absolute; top: 0; height: 8px; border-radius: 4px; }
+.up .fill { background: #2fbf71; }
+.down .fill { background: #e5534b; }
+.flat .fill { background: #6e7b8a; }
+.parts { display: flex; gap: 18px; margin-top: 10px; font-size: 13px; color: #8b98a5; }
+.parts b { color: #e6edf3; font-weight: 600; }
+.label { color: #8b98a5; font-size: 11px; text-transform: uppercase;
+         letter-spacing: 1px; margin-top: 14px; }
+.text { font-size: 14px; line-height: 1.45; margin-top: 4px; }
+.note { font-size: 13px; color: #e8c766; margin-top: 8px; }
+.foot { color: #5c6875; font-size: 12px; margin-top: 30px; line-height: 1.6; }
+.nav { display: flex; gap: 8px; margin-top: 18px; }
+.nav a { color: #aab6c3; text-decoration: none; font-size: 14px; padding: 6px 14px;
+         border: 1px solid #1f2935; border-radius: 999px; }
+.nav a.on { color: #0b0f14; background: #e6edf3; border-color: #e6edf3; font-weight: 600; }
+h2 { font-size: 16px; margin: 28px 0 10px; }
+.tablebox { overflow-x: auto; background: #121821; border: 1px solid #1f2935;
+            border-radius: 10px; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th, td { padding: 9px 12px; text-align: right; white-space: nowrap;
+         border-bottom: 1px solid #1f2935; }
+th { color: #8b98a5; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;
+     font-weight: 600; }
+th:first-child, td:first-child, td.l, th.l { text-align: left; }
+tr:last-child td { border-bottom: none; }
+td.good { color: #5fe39a; font-weight: 600; }
+td.bad { color: #ff8a82; font-weight: 600; }
+td.dim { color: #5c6875; }
+.empty { padding: 18px; color: #8b98a5; font-size: 14px; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Macro Intelligence</h1>
+    <div class="sub">Report #7 &middot; made Fri 02 Oct 2026, 06:17 New York time &middot; model 0.1.0</div>
+    <div class="nav">
+      <a href="index.html">Today</a>
+      <a href="track.html">Track record</a>
+      <a href="history.html" class="on">History</a>
+    </div>
+    <div class="warn">Prototype. This bias is not validated and is not trading advice.</div>
+    <h2><a href='history.html' style='color:#8ab4f8'>&larr; Back to history</a></h2><div class='grid'>
+    <div class="card flat">
+      <div class="top">
+        <div class="sym">XAUUSD</div>
+        <div class="bias">&#9644; Neutral</div>
+      </div>
+      <div class="conf">Confidence: Low</div>
+      
+      <div class="scorerow">
+        <div class="score">-12</div>
+        <div class="range">score from -100 to +100</div>
+      </div>
+      <div class="bar">
+        <div class="fill" style="right: 50%; width: 6.0%"></div>
+        <div class="mid"></div>
+      </div>
+      <div class="parts">
+        <div>Big picture <b>+3</b></div>
+        <div>This week <b>-28</b></div>
+      </div>
+      <div class="label">Main drivers</div>
+      <div class="text">US real yield move weighs on XAUUSD (this week)<br>Risk sentiment supports XAUUSD (this week)</div>
+      
+      <div class="label">What would change this</div>
+      <div class="text">Reversal in US real yield move</div>
+    </div>
+    <div class="card down soft">
+      <div class="top">
+        <div class="sym">EURUSD</div>
+        <div class="bias">&#9660; Leaning bearish</div>
+      </div>
+      <div class="conf">Confidence: Medium</div>
+      
+      <div class="scorerow">
+        <div class="score">-32</div>
+        <div class="range">score from -100 to +100</div>
+      </div>
+      <div class="bar">
+        <div class="fill" style="right: 50%; width: 15.9%"></div>
+        <div class="mid"></div>
+      </div>
+      <div class="parts">
+        <div>Big picture <b>-21</b></div>
+        <div>This week <b>-42</b></div>
+      </div>
+      <div class="label">Main drivers</div>
+      <div class="text">US real yield move weighs on EURUSD (this week)<br>Risk sentiment weighs on EURUSD (this week)</div>
+      
+      <div class="label">What would change this</div>
+      <div class="text">Reversal in US real yield move</div>
+    </div>
+    <div class="card down soft">
+      <div class="top">
+        <div class="sym">GBPUSD</div>
+        <div class="bias">&#9660; Leaning bearish</div>
+      </div>
+      <div class="conf">Confidence: Medium</div>
+      
+      <div class="scorerow">
+        <div class="score">-37</div>
+        <div class="range">score from -100 to +100</div>
+      </div>
+      <div class="bar">
+        <div class="fill" style="right: 50%; width: 18.5%"></div>
+        <div class="mid"></div>
+      </div>
+      <div class="parts">
+        <div>Big picture <b>-32</b></div>
+        <div>This week <b>-42</b></div>
+      </div>
+      <div class="label">Main drivers</div>
+      <div class="text">US real yield move weighs on GBPUSD (this week)<br>Yield gap weighs on GBPUSD (big picture)</div>
+      
+      <div class="label">What would change this</div>
+      <div class="text">Reversal in US real yield move</div>
+    </div>
+    <div class="card flat">
+      <div class="top">
+        <div class="sym">USDJPY</div>
+        <div class="bias">&#9644; Neutral</div>
+      </div>
+      <div class="conf">Confidence: Low</div>
+      
+      <div class="scorerow">
+        <div class="score">+2</div>
+        <div class="range">score from -100 to +100</div>
+      </div>
+      <div class="bar">
+        <div class="fill" style="left: 50%; width: 1.0%"></div>
+        <div class="mid"></div>
+      </div>
+      <div class="parts">
+        <div>Big picture <b>-2</b></div>
+        <div>This week <b>+6</b></div>
+      </div>
+      <div class="label">Main drivers</div>
+      <div class="text">Risk sentiment weighs on USDJPY (this week)<br>US real yield move supports USDJPY (this week)</div>
+      
+      <div class="label">What would change this</div>
+      <div class="text">Reversal in risk sentiment</div>
+    </div>
+    <div class="card up soft">
+      <div class="top">
+        <div class="sym">USDCAD</div>
+        <div class="bias">&#9650; Leaning bullish</div>
+      </div>
+      <div class="conf">Confidence: Medium</div>
+      
+      <div class="scorerow">
+        <div class="score">+32</div>
+        <div class="range">score from -100 to +100</div>
+      </div>
+      <div class="bar">
+        <div class="fill" style="left: 50%; width: 16.0%"></div>
+        <div class="mid"></div>
+      </div>
+      <div class="parts">
+        <div>Big picture <b>+21</b></div>
+        <div>This week <b>+42</b></div>
+      </div>
+      <div class="label">Main drivers</div>
+      <div class="text">Risk sentiment supports USDCAD (this week)<br>US real yield move supports USDCAD (this week)</div>
+      
+      <div class="label">What would change this</div>
+      <div class="text">Reversal in risk sentiment</div>
+    </div>
+    <div class="card flat">
+      <div class="top">
+        <div class="sym">USDCHF</div>
+        <div class="bias">&#9644; Neutral</div>
+      </div>
+      <div class="conf">Confidence: Medium</div>
+      
+      <div class="scorerow">
+        <div class="score">+18</div>
+        <div class="range">score from -100 to +100</div>
+      </div>
+      <div class="bar">
+        <div class="fill" style="left: 50%; width: 9.0%"></div>
+        <div class="mid"></div>
+      </div>
+      <div class="parts">
+        <div>Big picture <b>+34</b></div>
+        <div>This week <b>+2</b></div>
+      </div>
+      <div class="label">Main drivers</div>
+      <div class="text">Risk sentiment weighs on USDCHF (this week)<br>Yield gap supports USDCHF (big picture)</div>
+      
+      <div class="label">What would change this</div>
+      <div class="text">Reversal in risk sentiment</div>
+    </div>
+    <div class="card down soft">
+      <div class="top">
+        <div class="sym">ES</div>
+        <div class="bias">&#9660; Leaning bearish</div>
+      </div>
+      <div class="conf">Confidence: Medium</div>
+      
+      <div class="scorerow">
+        <div class="score">-26</div>
+        <div class="range">score from -100 to +100</div>
+      </div>
+      <div class="bar">
+        <div class="fill" style="right: 50%; width: 12.9%"></div>
+        <div class="mid"></div>
+      </div>
+      <div class="parts">
+        <div>Big picture <b>+10</b></div>
+        <div>This week <b>-62</b></div>
+      </div>
+      <div class="label">Main drivers</div>
+      <div class="text">Risk sentiment weighs on ES (this week)<br>US real yield move weighs on ES (this week)</div>
+      
+      <div class="label">What would change this</div>
+      <div class="text">Reversal in risk sentiment</div>
+    </div>
+    <div class="card down soft">
+      <div class="top">
+        <div class="sym">NQ</div>
+        <div class="bias">&#9660; Leaning bearish</div>
+      </div>
+      <div class="conf">Confidence: Medium</div>
+      
+      <div class="scorerow">
+        <div class="score">-32</div>
+        <div class="range">score from -100 to +100</div>
+      </div>
+      <div class="bar">
+        <div class="fill" style="right: 50%; width: 15.8%"></div>
+        <div class="mid"></div>
+      </div>
+      <div class="parts">
+        <div>Big picture <b>+7</b></div>
+        <div>This week <b>-70</b></div>
+      </div>
+      <div class="label">Main drivers</div>
+      <div class="text">US real yield move weighs on NQ (this week)<br>Risk sentiment weighs on NQ (this week)</div>
+      
+      <div class="label">What would change this</div>
+      <div class="text">Reversal in US real yield move</div>
+    </div>
+    <div class="card flat">
+      <div class="top">
+        <div class="sym">WTI</div>
+        <div class="bias">&#9644; Neutral</div>
+      </div>
+      <div class="conf">Confidence: Low</div>
+      
+      <div class="scorerow">
+        <div class="score">+5</div>
+        <div class="range">score from -100 to +100</div>
+      </div>
+      <div class="bar">
+        <div class="fill" style="left: 50%; width: 2.6%"></div>
+        <div class="mid"></div>
+      </div>
+      <div class="parts">
+        <div>Big picture <b>+32</b></div>
+        <div>This week <b>-22</b></div>
+      </div>
+      <div class="label">Main drivers</div>
+      <div class="text">Risk sentiment weighs on WTI (this week)<br>US labour market supports WTI (big picture)</div>
+      <div class="note">Note: big picture and this week disagree, no oil supply data yet</div>
+      <div class="label">What would change this</div>
+      <div class="text">Reversal in risk sentiment</div>
+    </div></div>
+    <div class="foot">This is a saved report. It is never changed.</div>
+  </div>
+</body>
+</html>
